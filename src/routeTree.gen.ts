@@ -14,7 +14,6 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DataRouteImport } from './routes/data'
 import { Route as EntryRouteImport } from './routes/entry'
-import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedCommunityRouteImport } from './routes/_authenticated/community'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,11 +40,6 @@ const EntryRoute = EntryRouteImport.update({
   path: '/entry',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthenticatedCommunityRoute = AuthenticatedCommunityRouteImport.update({
   id: '/community',
   path: '/community',
@@ -57,7 +51,6 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/data': typeof DataRoute
   '/entry': typeof EntryRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/community': typeof AuthenticatedCommunityRoute
 }
 export interface FileRoutesByTo {
@@ -65,7 +58,6 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/data': typeof DataRoute
   '/entry': typeof EntryRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/community': typeof AuthenticatedCommunityRoute
 }
 export interface FileRoutesById {
@@ -75,15 +67,13 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/data': typeof DataRoute
   '/entry': typeof EntryRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/community': typeof AuthenticatedCommunityRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    '/' | '/auth' | '/data' | '/entry' | '/reset-password' | '/community'
+  fullPaths: '/' | '/auth' | '/data' | '/entry' | '/community'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/data' | '/entry' | '/reset-password' | '/community'
+  to: '/' | '/auth' | '/data' | '/entry' | '/community'
   id:
     | '__root__'
     | '/'
@@ -91,7 +81,6 @@ export interface FileRouteTypes {
     | '/auth'
     | '/data'
     | '/entry'
-    | '/reset-password'
     | '/_authenticated/community'
   fileRoutesById: FileRoutesById
 }
@@ -101,7 +90,6 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   DataRoute: typeof DataRoute
   EntryRoute: typeof EntryRoute
-  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,13 +129,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EntryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_authenticated/community': {
       id: '/_authenticated/community'
       path: '/community'
@@ -175,7 +156,6 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   DataRoute: DataRoute,
   EntryRoute: EntryRoute,
-  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
