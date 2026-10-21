@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-type Search = { redirect?: string };
+type Search = { redirect?: string | undefined };
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (s: Record<string, unknown>): Search => ({
@@ -43,12 +43,12 @@ function AuthPage() {
           options: { emailRedirectTo: window.location.origin + "/community", data: { display_name: name.trim() } },
         });
         if (error) throw error;
-        if (data.session) navigate({ to: redirect ?? "/community" });
+        if (data.session) navigate({ to: (redirect ?? "/community") as "/community" });
         else setMsg({ ok: true, text: "Check your email to confirm your account, then sign in." });
       } else if (mode === "in") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate({ to: redirect ?? "/community" });
+        navigate({ to: (redirect ?? "/community") as "/community" });
       } else {
         const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + "/reset-password" });
         if (error) throw error;
