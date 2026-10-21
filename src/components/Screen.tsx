@@ -1,9 +1,26 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "@tanstack/react-router";
 
-const PATHS: Record<string, "/" | "/entry" | "/data"> = { home: "/", entry: "/entry", data: "/data" };
+const PATHS: Record<string, "/" | "/entry" | "/data" | "/community"> = {
+  home: "/",
+  entry: "/entry",
+  data: "/data",
+  community: "/community",
+};
 
-export function Screen({ html, script }: { html: string; script: string }) {
+const INACTIVE =
+  "flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg transition-colors";
+
+// Add a "Community" link after every "Data" link in the original screen menus.
+function withCommunityLink(html: string) {
+  return html.replace(/<a [^>]*data-path="data"[^>]*>[\s\S]*?<\/a>/g, (m) =>
+    m +
+    `<a class="${INACTIVE}" data-path="community" href="/community"><span class="material-symbols-outlined text-2xl">groups</span><span>Community</span></a>`,
+  );
+}
+
+export function Screen({ html: rawHtml, script }: { html: string; script: string }) {
+  const html = withCommunityLink(rawHtml);
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
