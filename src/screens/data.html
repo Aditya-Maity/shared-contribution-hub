@@ -1,0 +1,770 @@
+<aside class="hidden lg:flex fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex-col justify-between py-6 px-4"><div class="flex flex-col gap-6"><div class="flex items-center gap-3 px-2"><span class="material-symbols-outlined text-primary-container text-3xl">fitness_center</span><span class="font-headline-md text-headline-md tracking-tight text-on-surface font-bold">FitLog</span></div><div class="px-2"><a class="w-full flex items-center justify-center gap-2 bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary font-label-lg text-label-lg py-3 px-4 rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] transition-all" data-path="entry" href="#entry"><span class="material-symbols-outlined text-xl">add</span><span>Add Entry</span></a></div><nav class="flex flex-col gap-1" data-active-classes="bg-surface-container-high text-primary font-bold rounded-xl"><a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="home" href="#home"><span class="material-symbols-outlined text-2xl">home</span><span>Home</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="entry" href="#entry"><span class="material-symbols-outlined text-2xl">edit_note</span><span>Entry</span></a><a aria-current="page" class="flex items-center gap-3 px-3 py-2.5 transition-colors bg-surface-container-high text-primary font-bold rounded-xl" data-path="data" href="#data"><span class="material-symbols-outlined text-2xl">analytics</span><span>Data</span></a></nav></div><div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLeFDm_Acyj2Odw3CTt8q88pCcWg0HrJeRxHGQJ1WRTdaMYGhDnfyzf6o1wGAO8HN_xFDpjsh481Lo63lG5M-JGRHSVuqkmZBx8BXN30Mf4Jlpmd3Xs7tWxuNzzJcSENPbAP6UYoG_A_it2T6HGrN0nBsa-mYd-3df9q7rf-F4HAbt4GEZL-L4l8Etkq5MOdAIA13dFljCAcNRt44rh0i8iAQDGGu-cyyeaPkgtmEayCEVI94bSPxt"/><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-on-surface font-semibold truncate">Alex Morgan</span><span class="font-label-md text-label-md text-on-surface-variant truncate">Pro Member</span></div></div></aside><div class="lg:pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-0 lg:left-64 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-4 lg:px-8"><div class="flex items-center gap-3 lg:hidden"><button class="p-2 text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-2xl">menu</span></button><span class="material-symbols-outlined text-primary-container text-3xl">fitness_center</span><span class="font-headline-md text-headline-md text-on-surface font-bold">FitLog</span></div><div class="hidden lg:flex items-center gap-4"><span class="font-label-md text-label-md text-on-surface-variant">Health &amp; Performance Protocol</span></div><div class="flex items-center gap-3"><a class="lg:hidden flex items-center gap-1.5 bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary font-label-md text-label-md py-1.5 px-3 rounded-lg font-semibold" data-path="entry" href="#entry"><span class="material-symbols-outlined text-lg">add</span><span>Entry</span></a><div class="flex items-center gap-2"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLeFDm_Acyj2Odw3CTt8q88pCcWg0HrJeRxHGQJ1WRTdaMYGhDnfyzf6o1wGAO8HN_xFDpjsh481Lo63lG5M-JGRHSVuqkmZBx8BXN30Mf4Jlpmd3Xs7tWxuNzzJcSENPbAP6UYoG_A_it2T6HGrN0nBsa-mYd-3df9q7rf-F4HAbt4GEZL-L4l8Etkq5MOdAIA13dFljCAcNRt44rh0i8iAQDGGu-cyyeaPkgtmEayCEVI94bSPxt"/><span class="hidden md:inline-block font-label-md text-label-md text-on-surface font-medium">Alex Morgan</span></div></div></header><main class="relative pt-16 w-full px-margin-mobile md:px-margin max-w-7xl mx-auto flex-1 bg-background"><div class="flex flex-col w-full pb-16">
+<!-- Top Command & Filter Bar -->
+<section class="pt-6 pb-8">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+            Analytics &amp; Long-term Protocol
+          </span>
+<span class="text-on-surface-variant font-body-sm text-body-sm hidden sm:inline">•</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm hidden sm:inline">21 of 24 logged days tracked</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Nutrition Data &amp; History</h1>
+</div>
+<!-- Controls & Actions -->
+<div class="flex flex-wrap items-center gap-3">
+<!-- Month Navigator Dropdown -->
+<div class="flex items-center bg-surface-container-lowest rounded-xl shadow-sm p-1">
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" title="Previous Month">
+<span class="material-symbols-outlined text-lg leading-none">chevron_left</span>
+</button>
+<div class="px-3 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-primary">calendar_today</span>
+<span class="font-label-lg text-label-lg text-on-surface">October 2024</span>
+</div>
+<button class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" title="Next Month">
+<span class="material-symbols-outlined text-lg leading-none">chevron_right</span>
+</button>
+</div>
+<!-- Filter Pills: Gym vs Rest -->
+<div class="flex items-center bg-surface-container-lowest p-1 rounded-xl shadow-sm gap-1" id="gymFilter">
+<button class="filter-chip px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all bg-inverse-surface text-inverse-on-surface" data-filter="all">All Days</button>
+<button class="filter-chip px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low" data-filter="gym">Gym Days Only</button>
+<button class="filter-chip px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low" data-filter="rest">Rest Days</button>
+</div>
+<!-- Secondary Export Action -->
+<button class="flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest text-on-surface font-label-md text-label-md rounded-xl shadow-sm hover:bg-surface-container-low transition-colors" onclick="alert('Exporting October 2024 CSV &amp; JSON data archive...')">
+<span class="material-symbols-outlined text-lg text-on-surface-variant">file_download</span>
+<span>Export CSV / JSON</span>
+</button>
+<!-- Primary Shortcut -->
+<a class="flex items-center gap-1.5 px-4 py-2 bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary font-label-md text-label-md rounded-xl shadow-sm transition-all" href="#entry">
+<span class="material-symbols-outlined text-lg">add</span>
+<span>Add Entry</span>
+</a>
+</div>
+</div>
+<!-- Active Filter Summary Chip Strip -->
+<div class="mt-4 flex flex-wrap items-center gap-3">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-base text-primary">check_circle</span>
+<span>21 Days Logged this month • 16 Gym sessions</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-base text-secondary">insights</span>
+<span>Target Consistency: <strong class="text-on-surface">94.8%</strong></span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-base text-tertiary">monitor_weight</span>
+<span>Weight delta: <strong class="text-primary">-1.4 kg</strong> (lean deficit phase)</span>
+</div>
+</div>
+</section>
+<!-- Monthly Nutrition Averages Cards (Top Stat Grid) -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
+<!-- Card 1: Average Calories -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500"></div>
+<div>
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-primary-container/15 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">local_fire_department</span>
+</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">Avg Daily Intake</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md">-4% vs target</span>
+</div>
+<div class="flex items-baseline gap-1.5 mb-1">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">1,980</span>
+<span class="font-body-md text-body-md text-on-surface-variant">kcal / day</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Target baseline: 2,050 kcal (Optimal deficit zone)</p>
+</div>
+<!-- Mini Sparkline for Calories -->
+<div class="mt-4 pt-3 flex flex-col gap-1.5 bg-surface-container-low rounded-lg p-2.5">
+<div class="flex justify-between items-center text-on-surface-variant font-label-md text-label-md">
+<span>Day 1</span>
+<span>Rolling 21-Day Trend</span>
+<span>Day 21</span>
+</div>
+<svg class="w-full h-8 text-primary overflow-visible" preserveaspectratio="none" viewbox="0 0 200 32">
+<path d="M 0,18 Q 20,10 40,16 T 80,12 T 120,20 T 160,8 T 200,14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path>
+<circle class="fill-primary" cx="200" cy="14" r="3.5"></circle>
+</svg>
+</div>
+</div>
+<!-- Card 2: Average Protein -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500"></div>
+<div>
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-secondary-fixed/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">fitness_center</span>
+</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">Avg Daily Protein</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md">95% Hit Rate</span>
+</div>
+<div class="flex items-baseline gap-1.5 mb-1">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">152</span>
+<span class="font-body-md text-body-md text-on-surface-variant">g / day</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Target: 160g • Consistently high retention</p>
+</div>
+<!-- Linear progress indicator -->
+<div class="mt-4 pt-3 flex flex-col gap-1.5 bg-surface-container-low rounded-lg p-2.5">
+<div class="flex justify-between items-center font-label-md text-label-md">
+<span class="text-on-surface-variant">Monthly Adherence</span>
+<span class="font-bold text-secondary">152 / 160g</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 95%;"></div>
+</div>
+</div>
+</div>
+<!-- Card 3: Average Fiber -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-tertiary/5 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500"></div>
+<div>
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-tertiary-fixed/60 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-lg">spa</span>
+</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">Avg Daily Fiber</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md">91% Hit Rate</span>
+</div>
+<div class="flex items-baseline gap-1.5 mb-1">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">29</span>
+<span class="font-body-md text-body-md text-on-surface-variant">g / day</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Target: 32g • Gut microbiome optimal support</p>
+</div>
+<!-- Visual Pill Split Bar -->
+<div class="mt-4 pt-3 flex flex-col gap-1.5 bg-surface-container-low rounded-lg p-2.5">
+<div class="flex justify-between items-center font-label-md text-label-md">
+<span class="text-on-surface-variant">Soluble / Insoluble</span>
+<span class="font-bold text-tertiary">12g / 17g</span>
+</div>
+<div class="flex gap-1 h-2 rounded-full overflow-hidden bg-surface-container-high">
+<div class="bg-tertiary h-full rounded-l-full" style="width: 42%;"></div>
+<div class="bg-tertiary-container h-full rounded-r-full" style="width: 58%;"></div>
+</div>
+</div>
+</div>
+<!-- Card 4: Average Lipids / Fat -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-surface-variant/40 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500"></div>
+<div>
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-lg">water_drop</span>
+</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">Avg Daily Lipids</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-md text-label-md">Balanced</span>
+</div>
+<div class="flex items-baseline gap-1.5 mb-1">
+<span class="font-headline-xl text-headline-xl text-on-surface font-extrabold tracking-tight">61</span>
+<span class="font-body-md text-body-md text-on-surface-variant">g / day</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Target: 60g • Hormonal &amp; cellular homeostasis</p>
+</div>
+<div class="mt-4 pt-3 flex flex-col gap-1.5 bg-surface-container-low rounded-lg p-2.5">
+<div class="flex justify-between items-center font-label-md text-label-md">
+<span class="text-on-surface-variant">Mono / Poly / Sat</span>
+<span class="font-bold text-on-surface">32 / 16 / 13g</span>
+</div>
+<div class="flex gap-1 h-2 rounded-full overflow-hidden bg-surface-container-high">
+<div class="bg-primary-container h-full" style="width: 52%;"></div>
+<div class="bg-secondary-container h-full" style="width: 26%;"></div>
+<div class="bg-surface-variant h-full" style="width: 22%;"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Monthly Trend Chart / Bar Visual Section -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm mb-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">stacked_line_chart</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Daily Caloric &amp; Protein Trajectory</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Chronological daily distribution for October 2024 against baseline protocol</p>
+</div>
+<!-- Chart Legend -->
+<div class="flex flex-wrap items-center gap-4 text-on-surface font-label-md text-label-md">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-3 rounded bg-primary-container"></span>
+<span>Calories Intake (Bars)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Protein Intake (Line)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary ring-2 ring-primary-fixed"></span>
+<span>Gym Session Day</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="w-4 h-0.5 bg-outline-variant"></span>
+<span>Deficit Limit (2,050 kcal)</span>
+</div>
+</div>
+</div>
+<!-- Responsive SVG High-Density Graphic -->
+<div class="relative w-full overflow-x-auto pb-2">
+<div class="min-w-[760px]">
+<!-- Target reference annotation -->
+<div class="relative h-60 w-full flex flex-col justify-end">
+<!-- Horizontal Grid Lines -->
+<div class="absolute inset-x-0 top-[15%] h-px bg-surface-container flex items-center justify-between pointer-events-none">
+<span class="font-label-md text-label-md text-on-surface-variant px-1 bg-surface-container-lowest">2,400 kcal</span>
+</div>
+<div class="absolute inset-x-0 top-[35%] h-px bg-outline-variant/60 border-t border-dashed border-primary/40 flex items-center justify-between pointer-events-none">
+<span class="font-label-md text-label-md text-primary font-bold px-1 bg-surface-container-lowest">Target: 2,050 kcal</span>
+</div>
+<div class="absolute inset-x-0 top-[65%] h-px bg-surface-container flex items-center justify-between pointer-events-none">
+<span class="font-label-md text-label-md text-on-surface-variant px-1 bg-surface-container-lowest">1,600 kcal</span>
+</div>
+<!-- Bar Visual Grid (21 Days) -->
+<div class="grid grid-cols-21 gap-2 h-48 items-end px-4 z-10">
+<!-- Day 1 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 1: 1,940 kcal • Gym 50m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 64%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">1</span>
+</div>
+<!-- Day 2 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 2: 2,010 kcal • Gym 45m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 68%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">2</span>
+</div>
+<!-- Day 3 (Rest) -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 3: 1,820 kcal • Rest Day">
+<span class="w-2 h-2 rounded-full bg-transparent"></span>
+<div class="w-full bg-surface-variant rounded-t group-hover:bg-outline transition-all" style="height: 54%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">3</span>
+</div>
+<!-- Day 4 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 4: 2,120 kcal • Gym 60m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 72%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">4</span>
+</div>
+<!-- Day 5 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 5: 1,980 kcal • Gym 45m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 66%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">5</span>
+</div>
+<!-- Day 6 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 6: 2,050 kcal • Gym 50m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 70%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">6</span>
+</div>
+<!-- Day 7 (Rest) -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 7: 1,890 kcal • Rest Day">
+<span class="w-2 h-2 rounded-full bg-transparent"></span>
+<div class="w-full bg-surface-variant rounded-t group-hover:bg-outline transition-all" style="height: 59%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">7</span>
+</div>
+<!-- Day 8 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 8: 1,970 kcal • Gym 45m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 65%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">8</span>
+</div>
+<!-- Day 9 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 9: 2,040 kcal • Gym 55m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 69%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">9</span>
+</div>
+<!-- Day 10 (Rest) -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 10: 1,780 kcal • Rest Day">
+<span class="w-2 h-2 rounded-full bg-transparent"></span>
+<div class="w-full bg-surface-variant rounded-t group-hover:bg-outline transition-all" style="height: 52%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">10</span>
+</div>
+<!-- Day 11 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 11: 2,010 kcal • Gym 50m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 68%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">11</span>
+</div>
+<!-- Day 12 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 12: 1,990 kcal • Gym 40m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 67%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">12</span>
+</div>
+<!-- Day 13 (Rest) -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 13: 1,840 kcal • Rest Day">
+<span class="w-2 h-2 rounded-full bg-transparent"></span>
+<div class="w-full bg-surface-variant rounded-t group-hover:bg-outline transition-all" style="height: 56%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">13</span>
+</div>
+<!-- Day 14 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 14: 2,060 kcal • Gym 60m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 71%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">14</span>
+</div>
+<!-- Day 15 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 15: 1,920 kcal • Gym 45m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 63%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">15</span>
+</div>
+<!-- Day 16 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 16: 1,940 kcal • Gym 50m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 64%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">16</span>
+</div>
+<!-- Day 17 (Rest) -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 17: 1,810 kcal • Rest Day">
+<span class="w-2 h-2 rounded-full bg-transparent"></span>
+<div class="w-full bg-surface-variant rounded-t group-hover:bg-outline transition-all" style="height: 54%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">17</span>
+</div>
+<!-- Day 18 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 18: 2,030 kcal • Gym 45m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 69%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">18</span>
+</div>
+<!-- Day 19 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 19: 1,950 kcal • Gym 50m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 65%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">19</span>
+</div>
+<!-- Day 20 -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer" title="Oct 20: 1,980 kcal • Gym 55m">
+<span class="w-2 h-2 rounded-full bg-primary opacity-90"></span>
+<div class="w-full bg-primary-container/85 rounded-t group-hover:bg-primary transition-all" style="height: 66%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">20</span>
+</div>
+<!-- Day 21 (Selected Day) -->
+<div class="flex flex-col items-center gap-1.5 group cursor-pointer relative" title="Oct 21: 1,840 kcal • Gym 45m (Active Selection)">
+<div class="absolute -top-6 bg-primary text-on-primary font-label-md text-label-md px-1.5 py-0.5 rounded shadow">Today</div>
+<span class="w-2.5 h-2.5 rounded-full bg-primary ring-2 ring-primary-fixed"></span>
+<div class="w-full bg-primary rounded-t shadow-md transition-all ring-2 ring-primary-container" style="height: 60%;"></div>
+<span class="font-label-md text-label-md text-primary font-bold">21</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Daily Log History & Detail Drill-Down Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left Column: Daily Log History Table / Feed (7 Cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-5 border-b border-surface-container flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Daily Log History</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Reverse chronological record with macro distribution</p>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-2.5 py-1 rounded-full">Showing 6 Recent Entries</span>
+</div>
+<!-- Log Rows Container -->
+<div class="divide-y divide-surface-container" id="dayLogList">
+<!-- Row 1: Wed Oct 21 (ACTIVE SELECTED) -->
+<div class="day-row p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer bg-surface-container/60 hover:bg-surface-container transition-colors" data-day="oct-21" data-type="gym">
+<div class="flex items-start sm:items-center gap-3.5">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary-container flex flex-col items-center justify-center shrink-0">
+<span class="font-label-md text-label-md uppercase tracking-wider font-bold">Wed</span>
+<span class="font-headline-md text-headline-md font-extrabold leading-none">21</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Wednesday, Oct 21</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed font-label-md text-label-md">
+<span class="material-symbols-outlined text-xs">fitness_center</span>
+                  Gym: 45m
+                </span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>4 meals logged</span>
+<span>•</span>
+<span class="text-primary font-semibold">100% adherence</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between sm:justify-end gap-5">
+<div class="text-right">
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-data-metric text-data-metric text-on-surface">1,840</span>
+<span class="font-label-md text-label-md text-on-surface-variant">kcal</span>
+</div>
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant justify-end">
+<span>P: <strong class="text-secondary">152g</strong></span>
+<span>F: <strong class="text-tertiary">28g</strong></span>
+<span>L: <strong class="text-on-surface">58g</strong></span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-xl">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Row 2: Tue Oct 20 -->
+<div class="day-row p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer hover:bg-surface-container-low transition-colors" data-day="oct-20" data-type="gym">
+<div class="flex items-start sm:items-center gap-3.5">
+<div class="w-12 h-12 rounded-xl bg-surface-container text-on-surface flex flex-col items-center justify-center shrink-0">
+<span class="font-label-md text-label-md uppercase tracking-wider font-medium">Tue</span>
+<span class="font-headline-md text-headline-md font-bold leading-none">20</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Tuesday, Oct 20</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed font-label-md text-label-md">
+<span class="material-symbols-outlined text-xs">fitness_center</span>
+                  Gym: 55m
+                </span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>4 meals logged</span>
+<span>•</span>
+<span class="text-primary font-semibold">98% adherence</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between sm:justify-end gap-5">
+<div class="text-right">
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-data-metric text-data-metric text-on-surface">1,980</span>
+<span class="font-label-md text-label-md text-on-surface-variant">kcal</span>
+</div>
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant justify-end">
+<span>P: <strong class="text-secondary">158g</strong></span>
+<span>F: <strong class="text-tertiary">31g</strong></span>
+<span>L: <strong class="text-on-surface">62g</strong></span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-xl">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Row 3: Mon Oct 19 -->
+<div class="day-row p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer hover:bg-surface-container-low transition-colors" data-day="oct-19" data-type="gym">
+<div class="flex items-start sm:items-center gap-3.5">
+<div class="w-12 h-12 rounded-xl bg-surface-container text-on-surface flex flex-col items-center justify-center shrink-0">
+<span class="font-label-md text-label-md uppercase tracking-wider font-medium">Mon</span>
+<span class="font-headline-md text-headline-md font-bold leading-none">19</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Monday, Oct 19</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed font-label-md text-label-md">
+<span class="material-symbols-outlined text-xs">fitness_center</span>
+                  Gym: 50m
+                </span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>3 meals logged</span>
+<span>•</span>
+<span class="text-on-surface-variant">94% adherence</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between sm:justify-end gap-5">
+<div class="text-right">
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-data-metric text-data-metric text-on-surface">1,950</span>
+<span class="font-label-md text-label-md text-on-surface-variant">kcal</span>
+</div>
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant justify-end">
+<span>P: <strong class="text-secondary">149g</strong></span>
+<span>F: <strong class="text-tertiary">26g</strong></span>
+<span>L: <strong class="text-on-surface">64g</strong></span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-xl">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Row 4: Sun Oct 18 -->
+<div class="day-row p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer hover:bg-surface-container-low transition-colors" data-day="oct-18" data-type="gym">
+<div class="flex items-start sm:items-center gap-3.5">
+<div class="w-12 h-12 rounded-xl bg-surface-container text-on-surface flex flex-col items-center justify-center shrink-0">
+<span class="font-label-md text-label-md uppercase tracking-wider font-medium">Sun</span>
+<span class="font-headline-md text-headline-md font-bold leading-none">18</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Sunday, Oct 18</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed font-label-md text-label-md">
+<span class="material-symbols-outlined text-xs">fitness_center</span>
+                  Gym: 45m
+                </span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>4 meals logged</span>
+<span>•</span>
+<span class="text-primary font-semibold">97% adherence</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between sm:justify-end gap-5">
+<div class="text-right">
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-data-metric text-data-metric text-on-surface">2,030</span>
+<span class="font-label-md text-label-md text-on-surface-variant">kcal</span>
+</div>
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant justify-end">
+<span>P: <strong class="text-secondary">162g</strong></span>
+<span>F: <strong class="text-tertiary">30g</strong></span>
+<span>L: <strong class="text-on-surface">63g</strong></span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-xl">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Row 5: Sat Oct 17 (REST DAY) -->
+<div class="day-row p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer hover:bg-surface-container-low transition-colors" data-day="oct-17" data-type="rest">
+<div class="flex items-start sm:items-center gap-3.5">
+<div class="w-12 h-12 rounded-xl bg-surface-container text-on-surface-variant flex flex-col items-center justify-center shrink-0">
+<span class="font-label-md text-label-md uppercase tracking-wider font-medium">Sat</span>
+<span class="font-headline-md text-headline-md font-bold leading-none">17</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Saturday, Oct 17</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-surface-container-high text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-xs">bedtime</span>
+                  Rest Day
+                </span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>3 meals logged</span>
+<span>•</span>
+<span class="text-primary font-semibold">100% adherence</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between sm:justify-end gap-5">
+<div class="text-right">
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-data-metric text-data-metric text-on-surface">1,810</span>
+<span class="font-label-md text-label-md text-on-surface-variant">kcal</span>
+</div>
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant justify-end">
+<span>P: <strong class="text-secondary">144g</strong></span>
+<span>F: <strong class="text-tertiary">29g</strong></span>
+<span>L: <strong class="text-on-surface">57g</strong></span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-xl">arrow_forward_ios</span>
+</div>
+</div>
+<!-- Row 6: Fri Oct 16 -->
+<div class="day-row p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer hover:bg-surface-container-low transition-colors" data-day="oct-16" data-type="gym">
+<div class="flex items-start sm:items-center gap-3.5">
+<div class="w-12 h-12 rounded-xl bg-surface-container text-on-surface flex flex-col items-center justify-center shrink-0">
+<span class="font-label-md text-label-md uppercase tracking-wider font-medium">Fri</span>
+<span class="font-headline-md text-headline-md font-bold leading-none">16</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Friday, Oct 16</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-primary-fixed text-on-primary-fixed font-label-md text-label-md">
+<span class="material-symbols-outlined text-xs">fitness_center</span>
+                  Gym: 50m
+                </span>
+</div>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>4 meals logged</span>
+<span>•</span>
+<span class="text-primary font-semibold">96% adherence</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between sm:justify-end gap-5">
+<div class="text-right">
+<div class="flex items-baseline gap-1 justify-end">
+<span class="font-data-metric text-data-metric text-on-surface">1,940</span>
+<span class="font-label-md text-label-md text-on-surface-variant">kcal</span>
+</div>
+<div class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant justify-end">
+<span>P: <strong class="text-secondary">156g</strong></span>
+<span>F: <strong class="text-tertiary">30g</strong></span>
+<span>L: <strong class="text-on-surface">60g</strong></span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-xl">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+<!-- Pagination / More indicator -->
+<div class="p-4 bg-surface-container-low/50 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing days 16 - 21 of 21 logged</span>
+<button class="font-label-md text-label-md text-primary font-semibold hover:underline flex items-center gap-1">
+<span>Load earlier October days</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Right Column: Detail Inspection Panel (Selected Day: Wed Oct 21) (5 Cols) -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-xl shadow-sm p-5 sm:p-6 flex flex-col gap-5 sticky top-20">
+<!-- Drilldown Header -->
+<div class="flex items-start justify-between pb-4 border-b border-surface-container">
+<div>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary font-bold">Day Drill-Down</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mt-1">Wednesday, Oct 21, 2024</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hypertrophy Session • Upper Body Focus (45m)</p>
+</div>
+<!-- Quick actions -->
+<div class="flex items-center gap-1">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors" title="Print Day Protocol">
+<span class="material-symbols-outlined text-lg">print</span>
+</button>
+<a class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg transition-colors" href="#entry" title="Edit this day's entries">
+<span class="material-symbols-outlined text-lg">edit</span>
+</a>
+</div>
+</div>
+<!-- Target Adherence Full Banner -->
+<div class="p-3.5 rounded-xl bg-primary-fixed/30 flex items-center gap-3">
+<span class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-lg">verified</span>
+</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-primary-container font-bold">100% Macro Precision Achieved</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Hit all 4 macro targets on this day within ±3% target margin.</span>
+</div>
+</div>
+<!-- Macro Quick Pill Row for Selected Day -->
+<div class="grid grid-cols-4 gap-2 text-center">
+<div class="p-2 rounded-lg bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface-variant block">Calories</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">1,840</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low">
+<span class="font-label-md text-label-md text-secondary block">Protein</span>
+<span class="font-label-lg text-label-lg text-secondary font-bold">152g</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low">
+<span class="font-label-md text-label-md text-tertiary block">Fiber</span>
+<span class="font-label-lg text-label-lg text-tertiary font-bold">28g</span>
+</div>
+<div class="p-2 rounded-lg bg-surface-container-low">
+<span class="font-label-md text-label-md text-on-surface-variant block">Lipids</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">58g</span>
+</div>
+</div>
+<!-- Detailed Meal Breakdown Accordion / List -->
+<div class="flex flex-col gap-3.5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-semibold">Logged Meal Items</span>
+<span class="font-label-md text-label-md text-primary font-semibold">4 items total</span>
+</div>
+<!-- Meal 1: Breakfast -->
+<div class="bg-surface-container-low p-3.5 rounded-xl flex flex-col gap-2 transition-all hover:bg-surface-container">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-md bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-xs">B</span>
+<span class="font-label-lg text-label-lg text-on-surface">Rolled Oats with Whey &amp; Berries</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<button class="hover:text-primary p-0.5"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="hover:text-error p-0.5"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Portion: 120g oats, 30g isolate, 80g berries</span>
+<span class="font-bold text-on-surface">490 kcal</span>
+</div>
+<div class="flex items-center gap-3 text-xs font-semibold pt-1 border-t border-surface-container-high/60">
+<span class="text-secondary">Protein: 42g</span>
+<span class="text-tertiary">Fiber: 11g</span>
+<span class="text-on-surface-variant">Fat: 8g</span>
+</div>
+</div>
+<!-- Meal 2: Lunch -->
+<div class="bg-surface-container-low p-3.5 rounded-xl flex flex-col gap-2 transition-all hover:bg-surface-container">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-md bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-xs">L</span>
+<span class="font-label-lg text-label-lg text-on-surface">Grilled Chicken Quinoa Bowl</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<button class="hover:text-primary p-0.5"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="hover:text-error p-0.5"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Portion: 180g breast, 150g quinoa, greens</span>
+<span class="font-bold text-on-surface">620 kcal</span>
+</div>
+<div class="flex items-center gap-3 text-xs font-semibold pt-1 border-t border-surface-container-high/60">
+<span class="text-secondary">Protein: 48g</span>
+<span class="text-tertiary">Fiber: 9g</span>
+<span class="text-on-surface-variant">Fat: 18g</span>
+</div>
+</div>
+<!-- Meal 3: Afternoon Snack -->
+<div class="bg-surface-container-low p-3.5 rounded-xl flex flex-col gap-2 transition-all hover:bg-surface-container">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-md bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-bold text-xs">S</span>
+<span class="font-label-lg text-label-lg text-on-surface">Greek Yogurt &amp; Raw Almonds</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<button class="hover:text-primary p-0.5"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="hover:text-error p-0.5"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Portion: 200g non-fat yogurt, 20g almonds</span>
+<span class="font-bold text-on-surface">260 kcal</span>
+</div>
+<div class="flex items-center gap-3 text-xs font-semibold pt-1 border-t border-surface-container-high/60">
+<span class="text-secondary">Protein: 22g</span>
+<span class="text-tertiary">Fiber: 2g</span>
+<span class="text-on-surface-variant">Fat: 12g</span>
+</div>
+</div>
+<!-- Meal 4: Dinner -->
+<div class="bg-surface-container-low p-3.5 rounded-xl flex flex-col gap-2 transition-all hover:bg-surface-container">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-md bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-xs">D</span>
+<span class="font-label-lg text-label-lg text-on-surface">Wild Salmon &amp; Steamed Asparagus</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<button class="hover:text-primary p-0.5"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="hover:text-error p-0.5"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Portion: 190g fillet, 150g asparagus, olive drizzle</span>
+<span class="font-bold text-on-surface">470 kcal</span>
+</div>
+<div class="flex items-center gap-3 text-xs font-semibold pt-1 border-t border-surface-container-high/60">
+<span class="text-secondary">Protein: 40g</span>
+<span class="text-tertiary">Fiber: 6g</span>
+<span class="text-on-surface-variant">Fat: 20g</span>
+</div>
+</div>
+</div>
+<!-- Quick Add To This Specific Day -->
+<a class="w-full py-2.5 rounded-xl border-dashed border-2 border-outline-variant text-primary hover:bg-primary-container/10 font-label-md text-label-md flex items-center justify-center gap-2 transition-colors" href="#entry">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+<span>Append Meal to Oct 21</span>
+</a>
+</div>
+</section>
+</div>
+</main><nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-around px-4" data-active-classes="text-primary font-bold"><a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface gap-0.5" data-path="home" href="#home"><span class="material-symbols-outlined text-xl">home</span><span class="font-label-md text-label-md">Home</span></a><a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface gap-0.5" data-path="entry" href="#entry"><span class="material-symbols-outlined text-xl">edit_note</span><span class="font-label-md text-label-md">Entry</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 text-primary font-bold" data-path="data" href="#data"><span class="material-symbols-outlined text-xl">analytics</span><span class="font-label-md text-label-md">Data</span></a></nav></div>

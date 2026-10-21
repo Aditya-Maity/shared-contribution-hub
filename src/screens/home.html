@@ -1,0 +1,456 @@
+<aside class="hidden lg:flex fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex-col justify-between py-6 px-4"><div class="flex flex-col gap-6"><div class="flex items-center gap-3 px-2"><span class="material-symbols-outlined text-primary-container text-3xl">fitness_center</span><span class="font-headline-md text-headline-md tracking-tight text-on-surface font-bold">FitLog</span></div><div class="px-2"><button class="w-full flex items-center justify-center gap-2 bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary font-label-lg text-label-lg py-3 px-4 rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] transition-all" type="button"><span class="material-symbols-outlined text-xl">add</span><span>Add Entry</span></button></div><nav class="flex flex-col gap-1" data-active-classes="bg-surface-container-high text-on-surface font-bold rounded-xl"><a aria-current="page" class="flex items-center gap-3 px-3 py-2.5 transition-colors bg-surface-container-high text-on-surface font-bold rounded-xl" data-path="home" href="/"><span class="material-symbols-outlined text-2xl">home</span><span>Home</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="entry" href="/entry"><span class="material-symbols-outlined text-2xl">edit_note</span><span>Entry</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="data" href="/data"><span class="material-symbols-outlined text-2xl">analytics</span><span>Data</span></a></nav></div><div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLeFDm_Acyj2Odw3CTt8q88pCcWg0HrJeRxHGQJ1WRTdaMYGhDnfyzf6o1wGAO8HN_xFDpjsh481Lo63lG5M-JGRHSVuqkmZBx8BXN30Mf4Jlpmd3Xs7tWxuNzzJcSENPbAP6UYoG_A_it2T6HGrN0nBsa-mYd-3df9q7rf-F4HAbt4GEZL-L4l8Etkq5MOdAIA13dFljCAcNRt44rh0i8iAQDGGu-cyyeaPkgtmEayCEVI94bSPxt"/><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-on-surface font-semibold truncate">Alex Morgan</span><span class="font-label-md text-label-md text-on-surface-variant truncate">Pro Member</span></div></div></aside><div class="lg:pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-0 lg:left-64 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-4 lg:px-8"><div class="flex items-center gap-3 lg:hidden"><button class="p-2 text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-2xl">menu</span></button><span class="material-symbols-outlined text-primary-container text-3xl">fitness_center</span><span class="font-headline-md text-headline-md text-on-surface font-bold">FitLog</span></div><div class="hidden lg:flex items-center gap-4"><span class="font-label-md text-label-md text-on-surface-variant">Health &amp; Performance Protocol</span></div><div class="flex items-center gap-3"><button class="lg:hidden flex items-center gap-1.5 bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary font-label-md text-label-md py-1.5 px-3 rounded-lg font-semibold" type="button"><span class="material-symbols-outlined text-lg">add</span><span>Entry</span></button><div class="flex items-center gap-2"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLeFDm_Acyj2Odw3CTt8q88pCcWg0HrJeRxHGQJ1WRTdaMYGhDnfyzf6o1wGAO8HN_xFDpjsh481Lo63lG5M-JGRHSVuqkmZBx8BXN30Mf4Jlpmd3Xs7tWxuNzzJcSENPbAP6UYoG_A_it2T6HGrN0nBsa-mYd-3df9q7rf-F4HAbt4GEZL-L4l8Etkq5MOdAIA13dFljCAcNRt44rh0i8iAQDGGu-cyyeaPkgtmEayCEVI94bSPxt"/><span class="hidden md:inline-block font-label-md text-label-md text-on-surface font-medium">Alex Morgan</span></div></div></header><main class="relative pt-16 w-full px-margin-mobile md:px-margin max-w-7xl mx-auto flex-1 bg-background"><div class="flex flex-col w-full pb-16">
+<!-- Top Global Date & Protocol Control Bar -->
+<section class="w-full flex flex-col md:flex-row md:items-center justify-between gap-4 py-6">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary font-bold">Biometric Daily Feed</span>
+</div>
+<div class="flex items-center gap-3">
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight" id="currentDateDisplay">Today, Monday, Oct 28</h1>
+<div class="flex items-center bg-surface-container-low rounded-xl p-1 shadow-sm">
+<button class="p-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" id="prevDayBtn" title="Previous Day" type="button">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="px-2 py-0.5 font-label-md text-label-md text-primary font-bold hover:bg-surface-container-highest rounded transition-colors" id="todayResetBtn" type="button">Today</button>
+<button class="p-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" id="nextDayBtn" title="Next Day" type="button">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Gym Session Checkpoint & View State Toggle -->
+<div class="flex flex-wrap items-center gap-3">
+<!-- State Preview Toggle -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-xl shadow-sm">
+<button class="px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all bg-surface-container-lowest text-on-surface shadow-sm font-semibold" id="viewActiveBtn" type="button">Active Day</button>
+<button class="px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface font-semibold" id="viewEmptyBtn" type="button">Empty State</button>
+</div>
+<!-- Gym Toggle Badge -->
+<div class="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-surface-container-lowest shadow-sm transition-all cursor-pointer select-none" id="gymStatusContainer">
+<button class="flex items-center justify-center w-7 h-7 rounded-full bg-primary-container text-on-primary transition-transform active:scale-95 shadow-sm" id="gymToggleBtn" type="button">
+<span class="material-symbols-outlined text-base" id="gymIcon">check</span>
+</button>
+<div class="flex flex-col pr-1">
+<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5">
+<span id="gymLabelText">Gym Completed</span>
+<span class="bg-primary/10 text-primary px-1.5 py-0.2 rounded text-[10px] font-bold" id="gymTimeBadge">45m</span>
+</span>
+<span class="font-label-md text-label-md text-on-surface-variant text-xs" id="gymSubText">Strength &amp; Conditioning</span>
+</div>
+</div>
+<!-- Quick Add Entry CTA -->
+<button class="flex items-center gap-2 bg-primary-container text-on-primary hover:bg-primary font-label-lg text-label-lg py-2.5 px-4 rounded-xl shadow-sm transition-all transform active:scale-95" id="heroAddEntryBtn" type="button">
+<span class="material-symbols-outlined text-xl">add</span>
+<span>Add Entry</span>
+</button>
+</div>
+</section>
+<!-- EMPTY STATE CONTAINER (Hidden by default or shown via toggle) -->
+<section class="hidden w-full flex-col items-center justify-center py-20 px-4 bg-surface-container-lowest rounded-2xl shadow-sm my-4 text-center" id="emptyStateView">
+<div class="relative w-24 h-24 mb-6 rounded-full bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-5xl">restaurant_menu</span>
+<div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-base">add</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-2">No meals logged yet today</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-8">
+      Your metabolic engine is waiting for fuel data. Track breakfast, hydration, or morning supplements to establish today's performance baseline.
+    </p>
+<div class="flex flex-wrap items-center justify-center gap-3">
+<button class="flex items-center gap-2 bg-primary-container text-on-primary hover:bg-primary font-label-lg text-label-lg py-3 px-6 rounded-xl shadow-md transition-all transform hover:-translate-y-0.5" id="emptyLogFirstMealBtn" type="button">
+<span class="material-symbols-outlined">add_circle</span>
+<span>Log Your First Meal</span>
+</button>
+<button class="flex items-center gap-2 bg-surface-container-low text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg py-3 px-5 rounded-xl transition-colors" id="emptyQuickBreakfastBtn" type="button">
+<span class="material-symbols-outlined text-primary">history</span>
+<span>Repeat Yesterday's Breakfast</span>
+</button>
+</div>
+</section>
+<!-- ACTIVE DASHBOARD CONTENT WRAPPER -->
+<div class="flex flex-col gap-8 w-full" id="activeDashboardView">
+<!-- 1. DAILY MACRO TARGETS (4 Bento-Style Metric Cards) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+<!-- Calories Card -->
+<div class="flex flex-col justify-between p-5 rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all duration-300">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed/40 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">local_fire_department</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-wider">Energy Intake</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Calories</span>
+</div>
+</div>
+<span class="inline-flex items-center text-xs font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary">84%</span>
+</div>
+<div class="flex items-baseline justify-between mb-2">
+<div class="flex items-baseline gap-1.5">
+<span class="font-data-metric text-data-metric text-on-surface font-black" id="metricCalCurrent">1,840</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">/ 2,200 kcal</span>
+</div>
+</div>
+<!-- Progress Track -->
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden mb-3">
+<div class="bg-gradient-to-r from-tertiary-container to-primary-container h-full rounded-full transition-all duration-700" style="width: 84%"></div>
+</div>
+<div class="flex items-center justify-between text-xs font-medium text-on-surface-variant">
+<span class="flex items-center gap-1 text-primary font-semibold">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+            On Track
+          </span>
+<span class="font-semibold text-on-surface">360 kcal remaining</span>
+</div>
+</div>
+<!-- Protein Card -->
+<div class="flex flex-col justify-between p-5 rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all duration-300">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed/50 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">fitness_center</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-wider">Muscle Recovery</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Protein</span>
+</div>
+</div>
+<span class="inline-flex items-center text-xs font-bold px-2 py-0.5 rounded-full bg-secondary/10 text-secondary">89%</span>
+</div>
+<div class="flex items-baseline justify-between mb-2">
+<div class="flex items-baseline gap-1.5">
+<span class="font-data-metric text-data-metric text-on-surface font-black" id="metricProteinCurrent">142</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">/ 160 g</span>
+</div>
+</div>
+<!-- Progress Track -->
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden mb-3">
+<div class="bg-secondary h-full rounded-full transition-all duration-700" style="width: 89%"></div>
+</div>
+<div class="flex items-center justify-between text-xs font-medium text-on-surface-variant">
+<span class="flex items-center gap-1 text-secondary font-semibold">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+            Target Optimal
+          </span>
+<span class="font-semibold text-on-surface">18g remaining</span>
+</div>
+</div>
+<!-- Dietary Fiber Card -->
+<div class="flex flex-col justify-between p-5 rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all duration-300">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/40 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">spa</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-wider">Microbiome &amp; GI</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Fiber</span>
+</div>
+</div>
+<span class="inline-flex items-center text-xs font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary">88%</span>
+</div>
+<div class="flex items-baseline justify-between mb-2">
+<div class="flex items-baseline gap-1.5">
+<span class="font-data-metric text-data-metric text-on-surface font-black" id="metricFiberCurrent">28</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">/ 32 g</span>
+</div>
+</div>
+<!-- Progress Track -->
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden mb-3">
+<div class="bg-primary-container h-full rounded-full transition-all duration-700" style="width: 88%"></div>
+</div>
+<div class="flex items-center justify-between text-xs font-medium text-on-surface-variant">
+<span class="flex items-center gap-1 text-primary font-semibold">
+<span class="material-symbols-outlined text-sm">verified</span>
+            Satiety Max
+          </span>
+<span class="font-semibold text-on-surface">4g remaining</span>
+</div>
+</div>
+<!-- Healthy Lipids Card -->
+<div class="flex flex-col justify-between p-5 rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all duration-300">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed-dim/30 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">water_drop</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block uppercase tracking-wider">Hormonal Axis</span>
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Lipids / Fat</span>
+</div>
+</div>
+<span class="inline-flex items-center text-xs font-bold px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary">89%</span>
+</div>
+<div class="flex items-baseline justify-between mb-2">
+<div class="flex items-baseline gap-1.5">
+<span class="font-data-metric text-data-metric text-on-surface font-black" id="metricFatCurrent">58</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">/ 65 g</span>
+</div>
+</div>
+<!-- Progress Track -->
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden mb-3">
+<div class="bg-tertiary-container h-full rounded-full transition-all duration-700" style="width: 89%"></div>
+</div>
+<div class="flex items-center justify-between text-xs font-medium text-on-surface-variant">
+<span class="flex items-center gap-1 text-tertiary font-semibold">
+<span class="material-symbols-outlined text-sm">eco</span>
+            Omega Balance
+          </span>
+<span class="font-semibold text-on-surface">7g remaining</span>
+</div>
+</div>
+</section>
+<!-- 2. RECENT LOG & NUTRITIOUS PICK OF THE DAY (Editorial Split) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full items-stretch">
+<!-- Last Food Log Card (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-surface-container-lowest shadow-sm">
+<div>
+<!-- Header with contextual tag -->
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-high font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Last Food Log</span>
+<span class="text-xs text-on-surface-variant font-medium">• Today at 1:15 PM</span>
+</div>
+<span class="flex items-center gap-1 text-primary text-xs font-semibold bg-primary/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm">schedule</span>
+              Lunch
+            </span>
+</div>
+<!-- Food item title and ingredients -->
+<div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pb-5">
+<div class="space-y-1">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Grilled Chicken Quinoa Bowl</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                150g grilled chicken breast, 1 cup cooked tri-color quinoa, 1/2 Hass avocado, and fresh organic baby greens with cold-pressed olive drizzle.
+              </p>
+</div>
+</div>
+<!-- Micro Macro Breakdown Strip -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 py-4 bg-surface-container-low rounded-xl px-4 my-2">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase text-[10px]">Calories</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold">620 <span class="text-xs font-normal text-on-surface-variant">kcal</span></span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-secondary uppercase text-[10px] font-bold">Protein</span>
+<span class="font-headline-md text-headline-md text-secondary font-bold">48 <span class="text-xs font-normal text-on-surface-variant">g</span></span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary uppercase text-[10px] font-bold">Fiber</span>
+<span class="font-headline-md text-headline-md text-primary font-bold">9 <span class="text-xs font-normal text-on-surface-variant">g</span></span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-tertiary uppercase text-[10px] font-bold">Lipids</span>
+<span class="font-headline-md text-headline-md text-tertiary font-bold">18 <span class="text-xs font-normal text-on-surface-variant">g</span></span>
+</div>
+</div>
+</div>
+<!-- Quick actions button bar -->
+<div class="flex items-center justify-between pt-5">
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold transition-colors" id="editLogBtn" type="button">
+<span class="material-symbols-outlined text-base">edit</span>
+<span>Edit Log</span>
+</button>
+<button class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold transition-colors" id="duplicateLogBtn" type="button">
+<span class="material-symbols-outlined text-base">content_copy</span>
+<span>Quick Duplicate</span>
+</button>
+</div>
+<button class="text-primary hover:text-on-primary-container font-label-md text-label-md font-bold flex items-center gap-1 transition-colors" id="viewAllMealsBtn" type="button">
+<span>View All (3 meals)</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Nutritious Pick of the Day Card (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col justify-between p-6 rounded-2xl bg-gradient-to-br from-surface-container-lowest via-surface-container-low to-surface-container-high shadow-sm relative overflow-hidden">
+<!-- Background decorative ambient accent -->
+<div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-primary-fixed/20 blur-3xl pointer-events-none"></div>
+<div>
+<!-- Nutritionist Verified Header Pill -->
+<div class="flex items-center justify-between mb-4">
+<div class="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm font-bold">verified</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wider text-[11px]">Verified Nutritionist Pick</span>
+</div>
+<span class="text-xs font-bold text-tertiary bg-tertiary/10 px-2.5 py-0.5 rounded-full">Superfood Focus</span>
+</div>
+<!-- Featured Dish Headline -->
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold mb-2">Wild Salmon &amp; Steamed Asparagus</h2>
+<!-- Clinical/Biomedical Rationale Highlight -->
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-4">
+            "Rich in anti-inflammatory EPA/DHA omega-3 fatty acids, high-bioavailability protein for muscular recovery, and prebiotic fiber for gut motility."
+          </p>
+<!-- Macro Pills Grid -->
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-lowest shadow-xs text-xs font-bold text-on-surface">380 kcal</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-lowest shadow-xs text-xs font-bold text-secondary">38g Protein</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-lowest shadow-xs text-xs font-bold text-primary">4g Fiber</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-lowest shadow-xs text-xs font-bold text-tertiary">14g Omega-3 Lipids</span>
+</div>
+</div>
+<!-- Add to Today's Plan CTA -->
+<div class="pt-4 flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Prepared in ~18 min</span>
+<button class="flex items-center gap-2 bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md py-2 px-4 rounded-xl shadow-sm transition-all transform active:scale-95 font-semibold" id="logPickOfDayBtn" type="button">
+<span class="material-symbols-outlined text-base">add</span>
+<span>Plan for Dinner</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 3. SUGGESTIONS FOR YOU (Evidence-Based Clinical Cards) -->
+<section class="flex flex-col gap-4 w-full">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-extrabold">Evidence-Based Suggestions</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Precision nutrition recommendations calibrated to your athletic metabolic targets</p>
+</div>
+<div class="flex items-center gap-2 self-start sm:self-auto">
+<span class="text-xs font-semibold text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-primary">science</span>
+            Peer-Reviewed Sources
+          </span>
+</div>
+</div>
+<!-- Bento Trio Suggestions Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5 w-full">
+<!-- Suggestion Card 1 -->
+<div class="flex flex-col justify-between p-5 rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all group">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                Cardio Recovery
+              </span>
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-0.5 text-xs" href="https://www.hsph.harvard.edu/nutritionsource/" rel="noopener noreferrer" target="_blank" title="View Scientific Source">
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold group-hover:text-primary transition-colors">
+                High-Protein Mediterranean Lentil Salad
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">
+                Brown lentils, Persian cucumber, heirloom cherry tomatoes, kalamata olives, organic sheep feta, and fresh herbs.
+              </p>
+</div>
+<!-- Macro stats line -->
+<div class="flex items-center gap-3 pt-1 text-xs font-semibold text-on-surface-variant">
+<span><strong class="text-on-surface">420</strong> kcal</span>
+<span>•</span>
+<span class="text-secondary">26g Pro</span>
+<span>•</span>
+<span class="text-primary">14g Fib</span>
+</div>
+<!-- Verified Academic Citation Tag -->
+<div class="p-2 rounded-lg bg-surface-container-low text-[11px] text-on-surface-variant flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-sm text-tertiary">menu_book</span>
+<span class="truncate">Harvard T.H. Chan Public Health</span>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-4 mt-2">
+<button class="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-label-md text-label-md font-semibold transition-all shadow-xs" onclick="quickLogMeal('High-Protein Mediterranean Lentil Salad', 420, 26, 14, 11)" type="button">
+<span class="material-symbols-outlined text-base">add</span>
+<span>Quick Log</span>
+</button>
+</div>
+</div>
+<!-- Suggestion Card 2 -->
+<div class="flex flex-col justify-between p-5 rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all group">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-secondary bg-secondary/10 px-2 py-0.5 rounded-full">
+                Hypertrophy Matrix
+              </span>
+<a class="text-on-surface-variant hover:text-secondary transition-colors flex items-center gap-0.5 text-xs" href="https://www.precisionnutrition.com/" rel="noopener noreferrer" target="_blank" title="View Scientific Source">
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold group-hover:text-secondary transition-colors">
+                Post-Workout Berry Whey Overnight Oats
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">
+                Rolled oats steeped in almond milk, organic native whey isolate, wild blueberries, and chia seeds for steady insulin control.
+              </p>
+</div>
+<!-- Macro stats line -->
+<div class="flex items-center gap-3 pt-1 text-xs font-semibold text-on-surface-variant">
+<span><strong class="text-on-surface">490</strong> kcal</span>
+<span>•</span>
+<span class="text-secondary">42g Pro</span>
+<span>•</span>
+<span class="text-primary">11g Fib</span>
+</div>
+<!-- Verified Academic Citation Tag -->
+<div class="p-2 rounded-lg bg-surface-container-low text-[11px] text-on-surface-variant flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-sm text-secondary">verified_user</span>
+<span class="truncate">Precision Nutrition Protocol</span>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-4 mt-2">
+<button class="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-label-md text-label-md font-semibold transition-all shadow-xs" onclick="quickLogMeal('Post-Workout Berry Whey Overnight Oats', 490, 42, 11, 8)" type="button">
+<span class="material-symbols-outlined text-base">add</span>
+<span>Quick Log</span>
+</button>
+</div>
+</div>
+<!-- Suggestion Card 3 -->
+<div class="flex flex-col justify-between p-5 rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all group">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-tertiary bg-tertiary/10 px-2 py-0.5 rounded-full">
+                Cognitive &amp; Heart
+              </span>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors flex items-center gap-0.5 text-xs" href="https://www.mayoclinic.org/healthy-lifestyle" rel="noopener noreferrer" target="_blank" title="View Scientific Source">
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold group-hover:text-tertiary transition-colors">
+                Avocado &amp; Hemp Seed Sourdough Toast
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">
+                Naturally fermented whole grain sourdough, smashed Hass avocado, toasted hemp hearts, red pepper flakes, and microgreens.
+              </p>
+</div>
+<!-- Macro stats line -->
+<div class="flex items-center gap-3 pt-1 text-xs font-semibold text-on-surface-variant">
+<span><strong class="text-on-surface">360</strong> kcal</span>
+<span>•</span>
+<span class="text-secondary">16g Pro</span>
+<span>•</span>
+<span class="text-primary">8g Fib</span>
+</div>
+<!-- Verified Academic Citation Tag -->
+<div class="p-2 rounded-lg bg-surface-container-low text-[11px] text-on-surface-variant flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-sm text-primary">local_hospital</span>
+<span class="truncate">Mayo Clinic Healthy Living</span>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-4 mt-2">
+<button class="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-surface-container-high hover:bg-primary-container hover:text-on-primary text-on-surface font-label-md text-label-md font-semibold transition-all shadow-xs" onclick="quickLogMeal('Avocado &amp; Hemp Seed Sourdough Toast', 360, 16, 8, 17)" type="button">
+<span class="material-symbols-outlined text-base">add</span>
+<span>Quick Log</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Biometric Notification Toast Feedback Element (Hidden by default) -->
+<div class="fixed bottom-20 lg:bottom-8 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3 bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-xl shadow-xl max-w-sm" id="toastNotification">
+<span class="material-symbols-outlined text-primary-fixed">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold" id="toastTitle">Meal Logged</span>
+<span class="text-xs text-on-surface-variant/80" id="toastSub">Macros recalibrated instantly</span>
+</div>
+</div>
+</div>
+</div>
+</main><nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-around px-4" data-active-classes="text-primary font-bold"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 text-primary font-bold" data-path="home" href="/"><span class="material-symbols-outlined text-xl">home</span><span class="font-label-md text-label-md">Home</span></a><a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface gap-0.5" data-path="entry" href="/entry"><span class="material-symbols-outlined text-xl">edit_note</span><span class="font-label-md text-label-md">Entry</span></a><a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface gap-0.5" data-path="data" href="/data"><span class="material-symbols-outlined text-xl">analytics</span><span class="font-label-md text-label-md">Data</span></a></nav></div>
