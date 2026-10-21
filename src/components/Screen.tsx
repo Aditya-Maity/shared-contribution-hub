@@ -19,9 +19,10 @@ export function Screen({ html, script }: { html: string; script: string }) {
   const onClick = (e: React.MouseEvent) => {
     const t = e.target as HTMLElement;
     const link = t.closest("[data-path]") as HTMLElement | null;
-    if (link && PATHS[link.dataset.path!]) {
+    const to = link ? PATHS[link.dataset["path"] ?? ""] : undefined;
+    if (to) {
       e.preventDefault();
-      navigate({ to: PATHS[link.dataset.path!] });
+      navigate({ to });
       return;
     }
     const btn = t.closest("button");
