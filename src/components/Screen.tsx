@@ -11,11 +11,11 @@ const PATHS: Record<string, "/" | "/entry" | "/data" | "/community"> = {
 const INACTIVE =
   "flex items-center gap-3 px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg transition-colors";
 
-// Add a "Community" link after every "Data" link in the original screen menus.
+// Add a "My Logs" link after every "Data" link in the original screen menus.
 function withCommunityLink(html: string) {
   return html.replace(/<a [^>]*data-path="data"[^>]*>[\s\S]*?<\/a>/g, (m) =>
     m +
-    `<a class="${INACTIVE}" data-path="community" href="/community"><span class="material-symbols-outlined text-2xl">groups</span><span>Community</span></a>`,
+    `<a class="${INACTIVE}" data-path="community" href="/community"><span class="material-symbols-outlined text-2xl">list_alt</span><span>My Logs</span></a>`,
   );
 }
 
