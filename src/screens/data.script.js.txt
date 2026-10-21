@@ -1,0 +1,38 @@
+
+  // Filter toggle micro-interactions for Gym Days vs Rest Days
+  const filterButtons = document.querySelectorAll('#gymFilter .filter-chip');
+  const dayRows = document.querySelectorAll('.day-row');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Style active toggle state
+      filterButtons.forEach(b => {
+        b.classList.remove('bg-inverse-surface', 'text-inverse-on-surface');
+        b.classList.add('text-on-surface-variant');
+      });
+      btn.classList.add('bg-inverse-surface', 'text-inverse-on-surface');
+      btn.classList.remove('text-on-surface-variant');
+
+      const filter = btn.dataset.filter;
+      dayRows.forEach(row => {
+        const type = row.dataset.type;
+        if (filter === 'all') {
+          row.style.display = 'flex';
+        } else if (filter === 'gym') {
+          row.style.display = (type === 'gym') ? 'flex' : 'none';
+        } else if (filter === 'rest') {
+          row.style.display = (type === 'rest') ? 'flex' : 'none';
+        }
+      });
+    });
+  });
+
+  // Interactive selection highlight on day row click
+  dayRows.forEach(row => {
+    row.addEventListener('click', () => {
+      dayRows.forEach(r => {
+        r.classList.remove('bg-surface-container/60');
+      });
+      row.classList.add('bg-surface-container/60');
+    });
+  });

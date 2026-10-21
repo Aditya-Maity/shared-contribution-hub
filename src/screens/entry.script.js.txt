@@ -1,0 +1,395 @@
+
+  // FitLog Daily Nutrition Protocol State & Controller
+  (function() {
+    let currentActiveMeal = 'Breakfast';
+    let currentSelectedFood = {
+      name: 'Organic Rolled Oats',
+      baseAmt: 40,
+      baseUnit: 'g',
+      cal: 150,
+      pro: 5,
+      fib: 4,
+      fat: 2.5
+    };
+    let editingElement = null;
+
+    // Daily Macro Targets
+    const TARGETS = {
+      cal: 2200,
+      pro: 160,
+      fib: 32,
+      fat: 65
+    };
+
+    // DOM Elements
+    const modal = document.getElementById('food-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalMealTag = document.getElementById('modal-meal-tag');
+    const modalConfirmLabel = document.getElementById('modal-confirm-label');
+    const selectedFoodNameEl = document.getElementById('selected-food-name');
+    const portionInput = document.getElementById('portion-amount');
+    const portionUnit = document.getElementById('portion-unit');
+    const searchInput = document.getElementById('food-search-input');
+    const suggestedCards = document.querySelectorAll('.food-option-card');
+    const toast = document.getElementById('toast-banner');
+
+    // Calculated fields in modal
+    const calcCal = document.getElementById('modal-calc-cal');
+    const calcPro = document.getElementById('modal-calc-pro');
+    const calcFib = document.getElementById('modal-calc-fib');
+    const calcFat = document.getElementById('modal-calc-fat');
+
+    // Workout Toggle
+    const workoutBtn = document.getElementById('workout-toggle-btn');
+    const workoutKnob = document.getElementById('workout-toggle-knob');
+    const workoutDetail = document.getElementById('workout-detail-pill');
+    let workoutLogged = true;
+
+    workoutBtn.addEventListener('click', () => {
+      workoutLogged = !workoutLogged;
+      if (workoutLogged) {
+        workoutBtn.classList.remove('bg-surface-container-high');
+        workoutBtn.classList.add('bg-primary');
+        workoutKnob.classList.remove('left-0.5');
+        workoutKnob.classList.add('left-6');
+        workoutDetail.textContent = '45m Strength & Cardio';
+        showToast('Workout Protocol', 'Workout linked to calorie burn calculation.');
+      } else {
+        workoutBtn.classList.remove('bg-primary');
+        workoutBtn.classList.add('bg-surface-container-high');
+        workoutKnob.classList.remove('left-6');
+        workoutKnob.classList.add('left-0.5');
+        workoutDetail.textContent = 'Rest Day / None';
+        showToast('Rest Day Set', 'Targets calibrated for recovery mode.');
+      }
+    });
+
+    // Date Picker Logic
+    const datePicker = document.getElementById('log-date-picker');
+    const prevBtn = document.getElementById('prev-date-btn');
+    const nextBtn = document.getElementById('next-date-btn');
+
+    datePicker.addEventListener('change', () => {
+      const today = '2023-10-21';
+      if (datePicker.value >= today) {
+        datePicker.value = today;
+        nextBtn.disabled = true;
+        nextBtn.classList.add('text-outline-variant', 'cursor-not-allowed');
+      } else {
+        nextBtn.disabled = false;
+        nextBtn.classList.remove('text-outline-variant', 'cursor-not-allowed');
+        nextBtn.classList.add('text-on-surface-variant', 'hover:text-on-surface', 'hover:bg-surface');
+      }
+      showToast('Date Changed', `Viewing nutritional log for ${datePicker.value}`);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      const d = new Date(datePicker.value);
+      d.setDate(d.getDate() - 1);
+      datePicker.value = d.toISOString().split('T')[0];
+      datePicker.dispatchEvent(new Event('change'));
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (nextBtn.disabled) return;
+      const d = new Date(datePicker.value);
+      d.setDate(d.getDate() + 1);
+      datePicker.value = d.toISOString().split('T')[0];
+      datePicker.dispatchEvent(new Event('change'));
+    });
+
+    // Recalculate Modal Preview
+    function updateModalNutrients() {
+      const amt = parseFloat(portionInput.value) || 0;
+      const factor = (amt > 0 && currentSelectedFood.baseAmt > 0) ? (amt / currentSelectedFood.baseAmt) : 1;
+      
+      const c = Math.round(currentSelectedFood.cal * factor);
+      const p = (currentSelectedFood.pro * factor).toFixed(1);
+      const fib = (currentSelectedFood.fib * factor).toFixed(1);
+      const fat = (currentSelectedFood.fat * factor).toFixed(1);
+
+      calcCal.textContent = c;
+      calcPro.textContent = p;
+      calcFib.textContent = fib;
+      calcFat.textContent = fat;
+    }
+
+    portionInput.addEventListener('input', updateModalNutrients);
+    portionUnit.addEventListener('change', updateModalNutrients);
+
+    // Food Selection in Modal
+    suggestedCards.forEach(card => {
+      card.addEventListener('click', () => {
+        suggestedCards.forEach(c => c.classList.remove('bg-primary/10', 'ring-1', 'ring-primary'));
+        card.classList.add('bg-primary/10');
+
+        currentSelectedFood = {
+          name: card.dataset.name,
+          baseAmt: parseFloat(card.dataset.baseAmt),
+          baseUnit: card.dataset.baseUnit,
+          cal: parseFloat(card.dataset.cal),
+          pro: parseFloat(card.dataset.pro),
+          fib: parseFloat(card.dataset.fib),
+          fat: parseFloat(card.dataset.fat)
+        };
+
+        selectedFoodNameEl.textContent = currentSelectedFood.name;
+        portionInput.value = currentSelectedFood.baseAmt;
+        portionUnit.value = currentSelectedFood.baseUnit;
+        updateModalNutrients();
+      });
+    });
+
+    // Filter Foods
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      suggestedCards.forEach(card => {
+        const text = card.dataset.name.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+
+    // Open Add Modal
+    document.querySelectorAll('.open-add-modal-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentActiveMeal = btn.dataset.targetMeal;
+        editingElement = null;
+        modalMealTag.textContent = currentActiveMeal;
+        modalTitle.textContent = 'Add Food Item';
+        modalConfirmLabel.textContent = `Add to ${currentActiveMeal}`;
+        modal.classList.remove('hidden');
+        searchInput.value = '';
+        suggestedCards.forEach(c => c.style.display = 'flex');
+        updateModalNutrients();
+      });
+    });
+
+    // Close Modal
+    function closeModal() {
+      modal.classList.add('hidden');
+      editingElement = null;
+    }
+
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    document.getElementById('modal-cancel-btn').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Recalculate Meal & Day Totals
+    function recalculateAllTotals() {
+      let dayCal = 0, dayPro = 0, dayFib = 0, dayFat = 0;
+
+      document.querySelectorAll('#meal-sections-container section[data-meal]').forEach(section => {
+        let mealCal = 0, mealPro = 0, mealFib = 0, mealFat = 0;
+        const items = section.querySelectorAll('.food-item-list > div[data-id]');
+
+        items.forEach(item => {
+          mealCal += parseFloat(item.dataset.cal) || 0;
+          mealPro += parseFloat(item.dataset.pro) || 0;
+          mealFib += parseFloat(item.dataset.fib) || 0;
+          mealFat += parseFloat(item.dataset.fat) || 0;
+        });
+
+        // Update subtotal badge
+        const badge = section.querySelector('.meal-badge');
+        if (badge) {
+          badge.innerHTML = `${Math.round(mealCal)} kcal &bull; ${Math.round(mealPro)}g P &bull; ${Math.round(mealFib)}g Fib &bull; ${Math.round(mealFat)}g F`;
+        }
+
+        dayCal += mealCal;
+        dayPro += mealPro;
+        dayFib += mealFib;
+        dayFat += mealFat;
+      });
+
+      // Update Top Strips
+      const calRounded = Math.round(dayCal);
+      const proRounded = Math.round(dayPro);
+      const fibRounded = Math.round(dayFib);
+      const fatRounded = Math.round(dayFat);
+
+      document.getElementById('total-calories').textContent = calRounded.toLocaleString();
+      document.getElementById('total-protein').textContent = proRounded;
+      document.getElementById('total-fiber').textContent = fibRounded;
+      document.getElementById('total-fat').textContent = fatRounded;
+
+      document.getElementById('donut-kcal').textContent = calRounded.toLocaleString();
+      document.getElementById('side-protein').textContent = `${proRounded}g (${Math.round((proRounded*4/Math.max(calRounded, 1))*100)}%)`;
+      document.getElementById('side-fat').textContent = `${fatRounded}g (${Math.round((fatRounded*9/Math.max(calRounded, 1))*100)}%)`;
+
+      // Update Progress Bars
+      const calPctVal = Math.min(Math.round((calRounded / TARGETS.cal) * 100), 100);
+      const proPctVal = Math.min(Math.round((proRounded / TARGETS.pro) * 100), 100);
+      const fibPctVal = Math.min(Math.round((fibRounded / TARGETS.fib) * 100), 100);
+      const fatPctVal = Math.min(Math.round((fatRounded / TARGETS.fat) * 100), 100);
+
+      document.getElementById('cal-pct').textContent = `${calPctVal}%`;
+      document.getElementById('pro-pct').textContent = `${proPctVal}%`;
+      document.getElementById('fib-pct').textContent = `${fibPctVal}%`;
+      document.getElementById('fat-pct').textContent = `${fatPctVal}%`;
+
+      document.getElementById('cal-bar').style.width = `${calPctVal}%`;
+      document.getElementById('pro-bar').style.width = `${proPctVal}%`;
+      document.getElementById('fib-bar').style.width = `${fibPctVal}%`;
+      document.getElementById('fat-bar').style.width = `${fatPctVal}%`;
+    }
+
+    // Modal Confirm (Add or Edit)
+    document.getElementById('modal-confirm-btn').addEventListener('click', () => {
+      const amt = parseFloat(portionInput.value) || 0;
+      const unit = portionUnit.value;
+      const factor = (amt > 0 && currentSelectedFood.baseAmt > 0) ? (amt / currentSelectedFood.baseAmt) : 1;
+      
+      const c = Math.round(currentSelectedFood.cal * factor);
+      const p = parseFloat((currentSelectedFood.pro * factor).toFixed(1));
+      const fib = parseFloat((currentSelectedFood.fib * factor).toFixed(1));
+      const fat = parseFloat((currentSelectedFood.fat * factor).toFixed(1));
+
+      if (editingElement) {
+        // Update existing item
+        editingElement.dataset.cal = c;
+        editingElement.dataset.pro = p;
+        editingElement.dataset.fib = fib;
+        editingElement.dataset.fat = fat;
+
+        const nameSpan = editingElement.querySelector('.font-label-lg');
+        const portionSpan = editingElement.querySelector('.shrink-0');
+        const macroSpan = editingElement.querySelectorAll('.font-body-sm')[1];
+
+        if (nameSpan) nameSpan.textContent = currentSelectedFood.name;
+        if (portionSpan) portionSpan.textContent = `${amt} ${unit}`;
+        if (macroSpan) macroSpan.innerHTML = `${c} kcal &bull; ${p}g P &bull; ${fib}g Fib &bull; ${fat}g F`;
+
+        showToast('Item Updated', `${currentSelectedFood.name} adjusted.`);
+      } else {
+        // Append new item to target meal
+        const targetSection = document.querySelector(`section[data-meal="${currentActiveMeal}"] .food-item-list`);
+        if (targetSection) {
+          const newItemId = 'item-' + Date.now();
+          const itemEl = document.createElement('div');
+          itemEl.className = 'flex items-center justify-between p-3.5 bg-surface-container-low/70 hover:bg-surface-container-low rounded-xl transition-all';
+          itemEl.setAttribute('data-id', newItemId);
+          itemEl.setAttribute('data-cal', c);
+          itemEl.setAttribute('data-pro', p);
+          itemEl.setAttribute('data-fib', fib);
+          itemEl.setAttribute('data-fat', fat);
+
+          itemEl.innerHTML = `
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-8 h-8 rounded-lg bg-surface-container-lowest flex items-center justify-center text-on-surface-variant shrink-0">
+                <span class="material-symbols-outlined text-base">restaurant</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="font-label-lg text-label-lg font-bold text-on-surface truncate">${currentSelectedFood.name}</span>
+                  <span class="text-on-surface-variant font-body-sm text-body-sm shrink-0">${amt} ${unit}</span>
+                </div>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">${c} kcal &bull; ${p}g P &bull; ${fib}g Fib &bull; ${fat}g F</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 shrink-0 ml-2">
+              <button type="button" class="edit-portion-btn p-1.5 text-on-surface-variant hover:text-primary rounded-lg transition-colors" title="Adjust portion">
+                <span class="material-symbols-outlined text-lg">edit</span>
+              </button>
+              <button type="button" class="delete-food-btn p-1.5 text-on-surface-variant hover:text-error rounded-lg transition-colors" title="Remove food">
+                <span class="material-symbols-outlined text-lg">delete</span>
+              </button>
+            </div>
+          `;
+          targetSection.appendChild(itemEl);
+          attachItemEvents(itemEl);
+          showToast('Food Added', `${currentSelectedFood.name} logged to ${currentActiveMeal}.`);
+        }
+      }
+
+      closeModal();
+      recalculateAllTotals();
+    });
+
+    // Item Action Event Attachers
+    function attachItemEvents(parentEl) {
+      // Edit button
+      parentEl.querySelectorAll('.edit-portion-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const item = e.target.closest('[data-id]');
+          editingElement = item;
+          const section = item.closest('section');
+          currentActiveMeal = section.dataset.meal;
+
+          modalMealTag.textContent = currentActiveMeal;
+          modalTitle.textContent = 'Edit Portion';
+          modalConfirmLabel.textContent = 'Save Portion Changes';
+
+          const titleText = item.querySelector('.font-label-lg').textContent;
+          const portionText = item.querySelector('.font-body-sm.shrink-0').textContent;
+          const [amtPart, unitPart] = portionText.split(' ');
+
+          currentSelectedFood.name = titleText;
+          currentSelectedFood.cal = parseFloat(item.dataset.cal);
+          currentSelectedFood.pro = parseFloat(item.dataset.pro);
+          currentSelectedFood.fib = parseFloat(item.dataset.fib);
+          currentSelectedFood.fat = parseFloat(item.dataset.fat);
+          currentSelectedFood.baseAmt = parseFloat(amtPart) || 100;
+          currentSelectedFood.baseUnit = unitPart || 'g';
+
+          selectedFoodNameEl.textContent = titleText;
+          portionInput.value = amtPart || 100;
+          if (unitPart) portionUnit.value = unitPart;
+
+          updateModalNutrients();
+          modal.classList.remove('hidden');
+        });
+      });
+
+      // Delete button
+      parentEl.querySelectorAll('.delete-food-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const item = e.target.closest('[data-id]');
+          const itemName = item.querySelector('.font-label-lg').textContent;
+          item.remove();
+          recalculateAllTotals();
+          showToast('Food Removed', `${itemName} deleted from journal.`);
+        });
+      });
+    }
+
+    // Attach to initial elements
+    attachItemEvents(document.getElementById('meal-sections-container'));
+
+    // Toast Notification Utility
+    let toastTimeout;
+    function showToast(title, desc) {
+      clearTimeout(toastTimeout);
+      document.getElementById('toast-title').textContent = title;
+      document.getElementById('toast-desc').textContent = desc;
+
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+      }, 3500);
+    }
+
+    // Save & Clear Primary CTAs
+    document.getElementById('save-log-btn').addEventListener('click', () => {
+      showToast('Daily Log Synchronized', 'Changes saved to daily log and synced to dashboard.');
+    });
+
+    document.getElementById('clear-form-btn').addEventListener('click', () => {
+      if (confirm('Are you sure you want to clear all meal entries for this day?')) {
+        document.querySelectorAll('.food-item-list').forEach(list => {
+          list.innerHTML = '';
+        });
+        recalculateAllTotals();
+        showToast('Journal Reset', 'All meal entries have been cleared.');
+      }
+    });
+
+  })();

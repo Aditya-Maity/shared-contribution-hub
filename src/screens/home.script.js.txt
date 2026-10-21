@@ -1,0 +1,276 @@
+
+  (function () {
+    // 1. Storage & State Keys
+    const STORAGE_KEY = 'fitlog_dashboard_state';
+    
+    // Default initial mock state
+    const defaultState = {
+      isGymCompleted: true,
+      gymDuration: '45 min',
+      gymType: 'Strength & Cardio',
+      currentDateOffset: 0, // 0 = today, -1 = yesterday, +1 = tomorrow
+      calories: 1840,
+      calorieGoal: 2200,
+      protein: 142,
+      proteinGoal: 160,
+      fiber: 28,
+      fiberGoal: 32,
+      fat: 58,
+      fatGoal: 65,
+      viewMode: 'active' // 'active' | 'empty'
+    };
+
+    // Load or initialize state
+    function loadState() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) return { ...defaultState, ...JSON.parse(stored) };
+      } catch (e) {
+        console.warn('Storage unavailable:', e);
+      }
+      return { ...defaultState };
+    }
+
+    function saveState(state) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.warn('Failed to save to localStorage:', e);
+      }
+    }
+
+    let state = loadState();
+
+    // 2. DOM Elements
+    const gymStatusContainer = document.getElementById('gymStatusContainer');
+    const gymToggleBtn = document.getElementById('gymToggleBtn');
+    const gymIcon = document.getElementById('gymIcon');
+    const gymLabelText = document.getElementById('gymLabelText');
+    const gymTimeBadge = document.getElementById('gymTimeBadge');
+    const gymSubText = document.getElementById('gymSubText');
+
+    const viewActiveBtn = document.getElementById('viewActiveBtn');
+    const viewEmptyBtn = document.getElementById('viewEmptyBtn');
+    const activeDashboardView = document.getElementById('activeDashboardView');
+    const emptyStateView = document.getElementById('emptyStateView');
+
+    const currentDateDisplay = document.getElementById('currentDateDisplay');
+    const prevDayBtn = document.getElementById('prevDayBtn');
+    const todayResetBtn = document.getElementById('todayResetBtn');
+    const nextDayBtn = document.getElementById('nextDayBtn');
+
+    const metricCalCurrent = document.getElementById('metricCalCurrent');
+    const metricProteinCurrent = document.getElementById('metricProteinCurrent');
+    const metricFiberCurrent = document.getElementById('metricFiberCurrent');
+    const metricFatCurrent = document.getElementById('metricFatCurrent');
+
+    const heroAddEntryBtn = document.getElementById('heroAddEntryBtn');
+    const emptyLogFirstMealBtn = document.getElementById('emptyLogFirstMealBtn');
+    const emptyQuickBreakfastBtn = document.getElementById('emptyQuickBreakfastBtn');
+    const editLogBtn = document.getElementById('editLogBtn');
+    const viewAllMealsBtn = document.getElementById('viewAllMealsBtn');
+    const duplicateLogBtn = document.getElementById('duplicateLogBtn');
+    const logPickOfDayBtn = document.getElementById('logPickOfDayBtn');
+
+    // Toast UI
+    const toast = document.getElementById('toastNotification');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastSub = document.getElementById('toastSub');
+    let toastTimeout = null;
+
+    function showToast(title, subtitle) {
+      if (!toast) return;
+      toastTitle.textContent = title;
+      toastSub.textContent = subtitle;
+      toast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3200);
+    }
+
+    // 3. Render Helpers
+    function updateDateDisplay() {
+      const now = new Date();
+      now.setDate(now.getDate() + state.currentDateOffset);
+      
+      const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      
+      const prefix = state.currentDateOffset === 0 ? 'Today, ' : (state.currentDateOffset === -1 ? 'Yesterday, ' : (state.currentDateOffset === 1 ? 'Tomorrow, ' : ''));
+      const formatted = `${prefix}${dayNames[now.getDay()]}, ${monthNames[now.getMonth()]} ${now.getDate()}`;
+      
+      if (currentDateDisplay) {
+        currentDateDisplay.textContent = formatted;
+      }
+    }
+
+    function renderGymUI() {
+      if (state.isGymCompleted) {
+        gymToggleBtn.className = 'flex items-center justify-center w-7 h-7 rounded-full bg-primary-container text-on-primary transition-transform active:scale-95 shadow-sm';
+        gymIcon.textContent = 'check';
+        gymLabelText.textContent = 'Gym Completed';
+        gymTimeBadge.style.display = 'inline-block';
+        gymSubText.textContent = `${state.gymType} • ${state.gymDuration}`;
+      } else {
+        gymToggleBtn.className = 'flex items-center justify-center w-7 h-7 rounded-full bg-surface-container-high text-on-surface-variant transition-transform active:scale-95';
+        gymIcon.textContent = 'radio_button_unchecked';
+        gymLabelText.textContent = 'Rest or Pending';
+        gymTimeBadge.style.display = 'none';
+        gymSubText.textContent = 'Tap to mark session completed';
+      }
+    }
+
+    function renderMetrics() {
+      if (metricCalCurrent) metricCalCurrent.textContent = Number(state.calories).toLocaleString();
+      if (metricProteinCurrent) metricProteinCurrent.textContent = state.protein;
+      if (metricFiberCurrent) metricFiberCurrent.textContent = state.fiber;
+      if (metricFatCurrent) metricFatCurrent.textContent = state.fat;
+    }
+
+    function renderViewMode() {
+      if (state.viewMode === 'empty') {
+        activeDashboardView.classList.add('hidden');
+        emptyStateView.classList.remove('hidden');
+        emptyStateView.classList.add('flex');
+
+        viewEmptyBtn.className = 'px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all bg-surface-container-lowest text-on-surface shadow-sm font-semibold';
+        viewActiveBtn.className = 'px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface font-semibold';
+      } else {
+        emptyStateView.classList.add('hidden');
+        emptyStateView.classList.remove('flex');
+        activeDashboardView.classList.remove('hidden');
+
+        viewActiveBtn.className = 'px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all bg-surface-container-lowest text-on-surface shadow-sm font-semibold';
+        viewEmptyBtn.className = 'px-3 py-1.5 rounded-lg font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface font-semibold';
+      }
+    }
+
+    // 4. Interactive Event Handlers
+    function toggleGym() {
+      state.isGymCompleted = !state.isGymCompleted;
+      saveState(state);
+      renderGymUI();
+      showToast(
+        state.isGymCompleted ? 'Workout Logged!' : 'Workout Status Reset',
+        state.isGymCompleted ? '45 min strength session logged to biometrics.' : 'Activity switched to active recovery mode.'
+      );
+    }
+
+    if (gymStatusContainer) {
+      gymStatusContainer.addEventListener('click', toggleGym);
+    }
+
+    if (viewActiveBtn) {
+      viewActiveBtn.addEventListener('click', () => {
+        state.viewMode = 'active';
+        saveState(state);
+        renderViewMode();
+      });
+    }
+
+    if (viewEmptyBtn) {
+      viewEmptyBtn.addEventListener('click', () => {
+        state.viewMode = 'empty';
+        saveState(state);
+        renderViewMode();
+      });
+    }
+
+    if (prevDayBtn) {
+      prevDayBtn.addEventListener('click', () => {
+        state.currentDateOffset -= 1;
+        updateDateDisplay();
+      });
+    }
+
+    if (nextDayBtn) {
+      nextDayBtn.addEventListener('click', () => {
+        state.currentDateOffset += 1;
+        updateDateDisplay();
+      });
+    }
+
+    if (todayResetBtn) {
+      todayResetBtn.addEventListener('click', () => {
+        state.currentDateOffset = 0;
+        updateDateDisplay();
+      });
+    }
+
+    // Navigation triggers to App Shell's "Entry" tab
+    function navigateToEntry() {
+      const entryNavLink = document.querySelector('a[data-path="entry"]');
+      if (entryNavLink) {
+        entryNavLink.click();
+      } else {
+        showToast('Navigating to Entry', 'Directing to manual food & macro logger');
+      }
+    }
+
+    if (heroAddEntryBtn) heroAddEntryBtn.addEventListener('click', navigateToEntry);
+    if (emptyLogFirstMealBtn) emptyLogFirstMealBtn.addEventListener('click', navigateToEntry);
+    if (editLogBtn) editLogBtn.addEventListener('click', navigateToEntry);
+    if (viewAllMealsBtn) viewAllMealsBtn.addEventListener('click', navigateToEntry);
+
+    // Empty state "Repeat Yesterday's Breakfast" quick action
+    if (emptyQuickBreakfastBtn) {
+      emptyQuickBreakfastBtn.addEventListener('click', () => {
+        state.calories = 520;
+        state.protein = 36;
+        state.fiber = 8;
+        state.fat = 14;
+        state.viewMode = 'active';
+        saveState(state);
+        renderMetrics();
+        renderViewMode();
+        showToast('Breakfast Repeated', 'Logged: 3 Eggs, Sourdough & Avocado (520 kcal)');
+      });
+    }
+
+    // Duplicate last log button
+    if (duplicateLogBtn) {
+      duplicateLogBtn.addEventListener('click', () => {
+        state.calories += 620;
+        state.protein += 48;
+        state.fiber += 9;
+        state.fat += 18;
+        saveState(state);
+        renderMetrics();
+        showToast('Meal Duplicated', 'Added 620 kcal & 48g protein to current tally');
+      });
+    }
+
+    // Nutritious Pick of Day Action
+    if (logPickOfDayBtn) {
+      logPickOfDayBtn.addEventListener('click', () => {
+        state.calories += 380;
+        state.protein += 38;
+        state.fiber += 4;
+        state.fat += 14;
+        saveState(state);
+        renderMetrics();
+        showToast('Dinner Planned', 'Wild Salmon & Steamed Asparagus logged (+380 kcal)');
+      });
+    }
+
+    // Global helper for quick suggestions logging
+    window.quickLogMeal = function(title, cal, pro, fib, fat) {
+      state.calories = (state.calories || 0) + cal;
+      state.protein = (state.protein || 0) + pro;
+      state.fiber = (state.fiber || 0) + fib;
+      state.fat = (state.fat || 0) + fat;
+      saveState(state);
+      renderMetrics();
+      showToast('Meal Added', `${title} (${cal} kcal) recorded successfully!`);
+    };
+
+    // Initial render
+    updateDateDisplay();
+    renderGymUI();
+    renderMetrics();
+    renderViewMode();
+  })();
